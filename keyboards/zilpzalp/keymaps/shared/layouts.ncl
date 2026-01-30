@@ -113,4 +113,29 @@ let both_side_combos = [
       FUN = shared_layers.FUN,
     },
   },
+
+  dvorak = {
+  #',.py   fgcrl
+  #aoeui   dhtns
+  #/qjkx   bmwvz
+   base_layout = ",.PYFGCROEUIDHTNAQJKMWVS",
+    thumbs = [kc.ESC, kc.TAB, kc.ENT, kc.SPC],
+    combos = [
+      # Left
+      [kc.V,    0,  1],  [kc.Q,    1,  2],
+      [ks.LCBR, 0,  8],  [kc.LBRC, 1,  9],  [ks.LPRN, 2,  10], [ks.LABK, 3,  11],
+      [kc.Z,    17, 18], [kc.ESC,  18, 19],
+      # Right
+                                            [tm.lctl & kc.BSPC, 5, 7],
+                                            [kc.BSPC, 5, 6],   [kc.DEL,  6,  7],
+      [ks.RABK, 4,  12], [ks.RPRN, 5,  13], [kc.RBRC, 6,  14], [ks.RCBR, 7,  15],
+                                            [kc.MINS, 20, 21], [kc.SLSH, 21, 22],
+    ] @ both_side_combos,
+    layers = {
+      NUM = shared_layers.NUM1,
+      NAV = shared_layers.NAV1,
+      SYM = shared_layers.SYM,
+      FUN = shared_layers.FUN,
+    },
+  },
 }
