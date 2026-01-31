@@ -118,13 +118,17 @@ let both_side_combos = [
   #',.py   fgcrl
   #aoeui   dhtns
   #/qjkx   bmwvz
-   base_layout = ",.PYFGCROEUIDHTNAQJKMWVS",
+
+   base_layout =        ",.PY" + "FGCR"
+                  "A" + "OEUI" + "DHTN" + "S" +
+                        "QJK" +   "MWV",
+
     thumbs = [kc.ESC, kc.TAB, kc.ENT, kc.SPC],
     combos = [
       # Left
-      [kc.V,    0,  1],  [kc.Q,    1,  2],
+      [kc.QUOT, 0,  1],  [kc.Q,    1,  2],
       [ks.LCBR, 0,  8],  [kc.LBRC, 1,  9],  [ks.LPRN, 2,  10], [ks.LABK, 3,  11],
-      [kc.Z,    17, 18], [kc.ESC,  18, 19],
+      [kc.Z,    17, 18], [kc.B,  18, 19],
       # Right
                                             [tm.lctl & kc.BSPC, 5, 7],
                                             [kc.BSPC, 5, 6],   [kc.DEL,  6,  7],
