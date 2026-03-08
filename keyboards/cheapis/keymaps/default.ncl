@@ -60,7 +60,7 @@ let make_hrm = fun key_idx =>
     ]
   } in
 
-  let hrm_mods = 
+  let hrm_mods =
     let m = [md.lgui, md.lalt, md.lctl, md.lsft] in
     m @ std.array.reverse m
   in
@@ -82,7 +82,7 @@ in
 
 let XXXX = tap.none & hold.none in
 
-let L' = fun layer => 
+let L' = fun layer =>
   let filler = std.array.replicate (key_count - std.array.length layer) XXXX in
   layer @ filler
 in
@@ -111,7 +111,7 @@ let alphas = fun layout => layout
   |> std.array.map (fun { index, value } => kc."%{value}"
       & (if index == 0 then
           MO 2 & hold.reg.behavior htb_media
-        else 
+        else
           make_hrm index)
     )
 in

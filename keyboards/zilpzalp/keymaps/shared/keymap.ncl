@@ -44,13 +44,13 @@ let make_hrm = fun key_idx =>
   let hrm_mods =
     let md = hold.reg.mod
   in [
-    md.lctl, md.lalt, md.lgui, md.lsft, md.ralt,
-    md.ralt, md.rsft, md.rgui, md.lalt, md.rctl,
+    md.lgui, md.lalt, md.lctl, md.lsft, md.ralt,
+    md.ralt, md.rsft, md.rctl, md.lalt, md.rgui,
   ] in
 
   let hrm_key_indices = [
-    16, 8,  9,  10, 11,
-    12, 13, 14, 15, 23,
+    8, 9,  10,  11, 12,
+    13, 14, 15, 16, 17,
   ] in
 
   let htb_hrm_base = {
@@ -97,7 +97,7 @@ let layer_default =
     |> util.array.enumerate
     |> std.array.map (fun { index, value } => tap.reg.kc."%{value}" & make_hrm index)
   in
-  
+
   let thumb_keycodes =
     let htb_thumb = {
       timeout_ms = 200,
@@ -109,7 +109,7 @@ let layer_default =
     layout.thumbs
     |> util.array.enumerate
     |> std.array.map (fun { index, value } =>
-        value 
+        value
         & hold.reg.layer (index + 1)
         & hold.reg.behavior htb_thumb)
   in
@@ -120,7 +120,7 @@ in
 {
   virtual_keys = virtual_keys',
   layers = [layer_default] @ (
-    ["NUM", "NAV", "SYM", "FUN"]
+    ["NAV", "FUN", "SYM", "NUM"]
     |> std.array.map (fun name => layout.layers."%{name}")
     |> std.array.map (fun layer => layer @ virtual_filler)
   )
