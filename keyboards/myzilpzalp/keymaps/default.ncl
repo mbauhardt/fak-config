@@ -38,12 +38,18 @@ let layout = {
       ks.COLN, ks.DLR,   ks.PERC, ks.CIRC,  ks.PLUS,     XXXX, XXXX, XXXX, XXXX, XXXX,
               ks.EXLM,  ks.AT,   ks.HASH,                   XXXX,    XXXX,    XXXX,
                               ks.RPRN, ks.UNDS,     XXXX,    XXXX,
+      # left
+      ks.LCBR,
+      ks.TILD, ks.PIPE
     ],
     NUM = [
               kc.N7, kc.N8,   kc.N9,   kc.RBRC,       XXXX,    XXXX,    XXXX,    XXXX,
      kc.SCLN, kc.N4, kc.N5,   kc.N6,   kc.EQL,       XXXX,    md.lsft, md.lctl, md.lalt, md.lgui,
               kc.N1, kc.N2,   kc.N3,                        XXXX,    XXXX,    XXXX,
                               kc.N0,   kc.MINS,        kc.E,    kc.N0,
+      # left
+      kc.LBRC,
+      kc.GRV, kc.BSLS
     ],
   },
 } in
@@ -98,7 +104,7 @@ let make_hrm = fun key_idx =>
   ] in
   let hrm_key_indices = [
     8, 9, 10, 11,
-    12, 13, 14, 15
+    14, 15, 16, 17
   ] in
 
   if std.array.elem key_idx hrm_key_indices then
@@ -143,7 +149,13 @@ in
   virtual_keys = virtual_keys',
   layers = [layer_default] @ (
     ["NAV", "FUN", "SYM", "NUM"]
-    |> std.array.map (fun name => layout.layers."%{name}")
-    |> std.array.map (fun layer => layer @ virtual_filler)
+    |> std.array.map (fun name =>
+       let l = layout.layers."%{name}" in
+       let filler_count = key_count - std.array.length l in
+       if filler_count > 0 then
+         l @ (std.array.replicate filler_count XXXX)
+       else
+         l
+    )
   )
 }
